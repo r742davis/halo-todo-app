@@ -1,0 +1,18 @@
+.task-filters {
+  display: flex;
+}
+
+.task-filters__filter {
+  font-size: 10px;
+  color: #ccc;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.task-filters__filter--active {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+

@@ -1,4 +1,4 @@
-import './sass/main.scss';
+import './css/style.css';
 import Tasks from "./containers/Tasks/Tasks";
 
 const App = () => {

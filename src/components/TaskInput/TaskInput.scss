@@ -1,0 +1,22 @@
+.task-input {
+  color: #ccc;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.task-input__icon {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.task-input__input {
+  width: 100%;
+  color: $blue;
+  border: none;
+  margin-left: 5px;
+  box-sizing: border-box;
+}

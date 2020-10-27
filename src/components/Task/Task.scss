@@ -1,0 +1,24 @@
+.task {
+  color: $red;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.task__checkbox {
+
+}
+
+.task__checkbox--completed {
+}
+
+.task__title {
+  width: 100%;
+  height: auto;
+  margin-left: 5px;
+  text-align: left;
+}

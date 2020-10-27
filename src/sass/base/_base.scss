@@ -1,4 +1,9 @@
 .App {
   text-align: center;
   color: $blue;
+  box-sizing: border-box;
+}
+
+input {
+  outline: none;
 }

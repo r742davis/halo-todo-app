@@ -1,17 +1,62 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTask } from "../../store/actions/index";
-import Button from "../../components/UI/Button/Button";
+
+import TaskDashboard from "../../components/TasksDashboard/TasksDashboard";
 
 class Tasks extends React.Component {
+  state = {
+    task: {
+      value: "",
+      completed: false,
+      valid: false,
+    },
+    tasks: [
+      {
+        title: "Get Milk",
+        completed: false,
+        touched: false,
+      },
+      {
+        title: "Walk the Dog",
+        completed: false,
+        touched: false,
+      },
+    ],
+    taskInput: "",
+  };
+
+  inputChangedHandler = (e) => {
+    const target = e.target;
+    const name = target.name;
+    this.setState({ [name]: e.target.value });
+  };
+
+  taskSubmitHandler = (e, task) => {
+    e.preventDefault();
+    console.log(task);
+    const newTask = {
+      title: this.state.taskInput,
+      completed: false,
+      touched: false,
+    };
+
+    const updatedTasks = [newTask, ...this.state.tasks];
+
+    this.setState({
+      tasks: updatedTasks,
+      taskInput: "",
+    });
+  };
+
   render() {
     return (
-      <>
-      <h1 onClick={() => this.props.addTask()}>
-        Hello I am the Task Container.
-      </h1>
-      <Button>Hello</Button>
-      </>
+      <TaskDashboard
+        tasks={this.state.tasks}
+        taskInput={this.state.taskInput}
+        inputChangedHandler={this.inputChangedHandler}
+        onSubmitTask={(e) => this.taskSubmitHandler(e, this.state.taskInput)}
+      />
     );
   }
 }
