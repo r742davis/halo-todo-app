@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import tasks from "./reducers/tasks";
+import todos from "./reducers/todos";
 
 const reducer = combineReducers({
-  tasks
+  todos
 });
 
 let store;

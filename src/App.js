@@ -1,10 +1,10 @@
 import './css/style.css';
-import Tasks from "./containers/Tasks/Tasks";
+import Todos from "./containers/Todos/Todos";
 
 const App = () => {
   return (
     <div className="App">
-      <Tasks />
+      <Todos />
     </div>
   );
 }

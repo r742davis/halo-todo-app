@@ -1,13 +1,16 @@
 import React from "react";
 import ItemsLeft from "./ItemsLeft/ItemsLeft";
-import TaskFilters from "./TaskFilters/TaskFilters";
+import TodoFilters from "./TodoFilters/TodoFilters";
 import ClearCompleted from "./ClearCompleted/ClearCompleted";
 
-const infoPanel = () => (
+const infoPanel = (props) => (
   <section className="info-panel">
-    <ItemsLeft />
-    <TaskFilters />
-    <ClearCompleted />
+    <ItemsLeft todos={props.todos} />
+    <TodoFilters
+      filters={props.filters}
+      onSelectFilterOption={props.onSelectFilterOption}
+    />
+    <ClearCompleted clicked={props.onClearCompletedTodos} />
   </section>
 );
 

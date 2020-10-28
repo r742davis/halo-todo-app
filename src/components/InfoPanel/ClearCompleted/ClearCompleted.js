@@ -1,7 +1,9 @@
 import React from "react";
 
-const clearCompleted = () => (
-  <div className="clear-completed">Clear Completed</div>
-)
+const clearCompleted = (props) => (
+  <div className="clear-completed" onClick={props.clicked}>
+    Clear Completed
+  </div>
+);
 
 export default clearCompleted;

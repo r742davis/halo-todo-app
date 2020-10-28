@@ -1,3 +1,8 @@
 export {
-  addTask
-} from "./tasks";
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  fetchTodos,
+  setTodoEditState,
+  updateTodoList,
+} from "./todos";

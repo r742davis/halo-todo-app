@@ -1,0 +1,62 @@
+.todo,
+.todo--disabled {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.todo {
+  color: $red;
+  &:hover {
+    .todo__icon {
+      display: block;
+      transition: 0.25s;
+    }
+  }
+}
+
+.todo--disabled {
+  color: lightcoral;
+  cursor: not-allowed;
+  &:hover {
+    .todo__icon {
+      display: none;
+    }
+  }
+}
+
+.todo__checkbox {
+  margin-left: 10px;
+}
+
+.todo__icon {
+  margin-right: 10px;
+  cursor: pointer;
+  display: none;
+  transition: 0.25s;
+}
+
+.todo__title {
+  caret-color: transparent;
+}
+
+.todo__edit {
+  caret-color: $red;
+}
+
+.todo__title,
+.todo__edit {
+  border: none;
+  width: 100%;
+  height: auto;
+  font-size: 24px;
+  color: $red;
+  margin-left: 5px;
+  text-align: left;
+  cursor: pointer;
+  
+}

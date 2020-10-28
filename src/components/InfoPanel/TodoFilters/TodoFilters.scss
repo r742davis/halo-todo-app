@@ -4,10 +4,14 @@
 
 .task-filters__filter {
   font-size: 10px;
-  color: #ccc;
+  color: black;
   border: none;
   background: none;
   cursor: pointer;
+  outline: none;
+  &:hover {
+    color: $green;
+  }
 }
 
 .task-filters__filter--active {
