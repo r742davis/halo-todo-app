@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   error: false,
   todoList: [],
+  filteredTodos: []
 };
 
 const addNewTodoToList = (state, action) => {
@@ -14,6 +15,12 @@ const addNewTodoToList = (state, action) => {
     loading: false,
   });
 };
+
+// const updateFilteredTodos = (state, action) => {
+//   return updateObject(state, {
+//     filteredTodos: action.filteredTodos
+//   })
+// }
 
 const deleteTodo = (state, action) => {
   const updatedTodoList = state.todoList.filter(
@@ -50,6 +57,8 @@ const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_NEW_TODO_TO_LIST:
       return addNewTodoToList(state, action);
+    // case actionType.UPDATE_FILTERED_TODOS:
+    //   return updateFilteredTodos(state, action);
     case actionType.UPDATE_TODO:
       return updateTodo(state, action);
     case actionType.DELETE_TODO:

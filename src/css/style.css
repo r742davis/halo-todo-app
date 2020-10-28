@@ -2,44 +2,131 @@
 ==================================================================== */
 /* BASE
 ==================================================================== */
-.App {
-  text-align: center;
-  color: blue;
-  box-sizing: border-box; }
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;1,200;1,300&display=swap");
+* {
+  text-align: left;
+  background-color: #f5f4f5;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 10px; }
 
 input {
   outline: none; }
 
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0; }
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0; }
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5; }
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none; }
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto; }
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block; }
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em; }
+
+input,
+button,
+textarea,
+select {
+  font: inherit; }
+
+button {
+  padding-left: 0; }
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important; } }
+
 /* COMPONENTS
 ==================================================================== */
 .clear-completed {
-  font-size: 10px;
+  font-size: 15px;
+  margin: 10px;
   display: flex;
   align-items: center;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: 0.5s; }
+  .clear-completed:hover {
+    color: firebrick;
+    transition: 0.5s; }
 
 .items-left {
-  font-size: 10px;
+  font-size: 15px;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  margin: 10px; }
 
 .task-filters {
   display: flex; }
 
-.task-filters__filter {
-  font-size: 10px;
+.task-filters__filter,
+.task-filters__filter--active {
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  font-size: 15px;
   color: black;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
   background: none;
   cursor: pointer;
-  outline: none; }
-  .task-filters__filter:hover {
-    color: green; }
+  outline: none;
+  transition: 0.25s; }
+  .task-filters__filter:hover,
+  .task-filters__filter--active:hover {
+    border: 1px solid #3CB371;
+    color: #3CB371;
+    transition: 0.25s; }
 
 .task-filters__filter--active {
-  border: 1px solid black;
-  border-radius: 5px;
-  box-sizing: border-box; }
+  border: 1px solid darkslategrey;
+  transition: 0.25s; }
 
 .info-panel {
   display: flex;
@@ -47,151 +134,154 @@ input {
 
 .todo,
 .todo--disabled {
-  border: 1px solid #ccc;
   box-sizing: border-box;
   width: 100%;
-  height: 50px;
+  height: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: left; }
 
 .todo {
-  color: red; }
+  color: darkslategrey; }
   .todo:hover .todo__icon {
     display: block;
     transition: 0.25s; }
 
-.todo--disabled {
-  color: lightcoral;
-  cursor: not-allowed; }
-  .todo--disabled:hover .todo__icon {
-    display: none; }
-
-.todo__checkbox {
-  margin-left: 10px; }
-
 .todo__icon {
-  margin-right: 10px;
+  color: red;
+  font-size: 15px;
+  font-weight: 200;
+  margin-right: 20px;
   cursor: pointer;
   display: none;
   transition: 0.25s; }
 
-.todo__title {
-  caret-color: transparent; }
-
-.todo__edit {
-  caret-color: red; }
-
 .todo__title,
-.todo__edit {
+.todo__edit,
+.todo__title--disabled {
   border: none;
   width: 100%;
   height: auto;
-  font-size: 24px;
-  color: red;
+  font-size: 2rem;
+  color: inherit;
   margin-left: 5px;
   text-align: left;
   cursor: pointer; }
 
-.task-dashboard {
+.todo__form {
+  box-sizing: border-box;
+  width: 90%; }
+
+.todo__edit {
+  caret-color: lightcoral; }
+
+.todo__title--disabled {
+  color: lightcoral;
+  font-weight: 200;
+  cursor: not-allowed; }
+  .todo__title--disabled:hover .todo__icon {
+    display: none; }
+
+.todo__checkbox {
+  margin-left: 20px;
+  margin-right: 10px; }
+
+.todo-dashboard {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 80%;
   height: auto;
-  border: 1px solid red;
   padding: 20px; }
+
+.todo-dashboard__title {
+  color: darkslategrey;
+  font-size: 100px;
+  font-weight: 100; }
+
+.todo-dashboard__section {
+  box-shadow: 0px 10px 20px 0px rgba(102, 102, 102, 0.52); }
+
+.todo-dashboard__section:first-child {
+  background-color: blue; }
 
 .task-input {
   color: #ccc;
   width: 100%;
   height: 50px;
   font-size: 20px;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   box-sizing: border-box;
   display: flex;
   align-items: center; }
 
 .task-input__icon {
-  margin-left: 10px;
+  margin-left: 20px;
   cursor: pointer; }
 
 .task-input__input {
   width: 100%;
-  font-size: 20px;
-  color: blue;
+  height: auto;
+  font-size: inherit;
+  font-style: italic;
+  color: darkslategrey;
   border: none;
   margin-left: 5px;
   box-sizing: border-box; }
 
-.button {
-  color: white;
-  background: blue;
-  border: none; }
-
-.Spinner,
-.Spinner:before,
-.Spinner:after {
-  border-radius: 50%; }
-
-.Spinner {
-  color: red;
-  font-size: 11px;
-  text-indent: -99999em;
-  margin: 55px auto;
+.spinner {
+  display: flex;
+  justify-content: center;
   position: relative;
-  width: 10em;
-  height: 10em;
-  box-shadow: inset 0 0 0 1em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0); }
+  width: 80px;
+  height: 80px;
+  margin-left: 10px; }
 
-.Spinner:before,
-.Spinner:after {
+.spinner div {
   position: absolute;
-  content: ''; }
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: darkslategrey;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0); }
 
-.Spinner:before {
-  width: 5.2em;
-  height: 10.2em;
-  background: white;
-  border-radius: 10.2em 0 0 10.2em;
-  top: -0.1em;
-  left: -0.1em;
-  -webkit-transform-origin: 5.1em 5.1em;
-  transform-origin: 5.1em 5.1em;
-  -webkit-animation: load2 2s infinite ease 1.5s;
-  animation: load2 2s infinite ease 1.5s; }
+.spinner div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite; }
 
-.Spinner:after {
-  width: 5.2em;
-  height: 10.2em;
-  background: white;
-  border-radius: 0 10.2em 10.2em 0;
-  top: -0.1em;
-  left: 4.9em;
-  -webkit-transform-origin: 0.1em 5.1em;
-  transform-origin: 0.1em 5.1em;
-  -webkit-animation: load2 2s infinite ease;
-  animation: load2 2s infinite ease; }
+.spinner div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite; }
 
-@-webkit-keyframes load2 {
+.spinner div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite; }
+
+.spinner div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite; }
+
+@keyframes lds-ellipsis1 {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
+    transform: scale(0); }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+    transform: scale(1); } }
 
-@keyframes load2 {
+@keyframes lds-ellipsis3 {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
+    transform: scale(1); }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+    transform: scale(0); } }
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(24px, 0); } }
 
 /* LAYOUT
 ==================================================================== */

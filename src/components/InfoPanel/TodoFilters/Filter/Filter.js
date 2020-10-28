@@ -1,14 +1,15 @@
 import React from "react";
+import Button from "../../../UI/Button/Button";
 
 const filter = (props) => (
-  <button
-    className={["task-filters__filter", props.classProp].join(' ')}
+  <Button
+    classProp={props.classProp}
     type={props.type}
-    onClick={props.clicked}
+    clicked={props.clicked}
     disabled={props.disabled}
   >
     {props.children}
-  </button>
+  </Button>
 );
 
 export default filter;

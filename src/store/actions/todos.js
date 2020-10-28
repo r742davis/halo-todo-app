@@ -63,18 +63,25 @@ export const updateTodoList = (updatedList) => {
 };
 
 export const setTodoEditState = (todo) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      const updatedTodo = { ...todo, editing: true };
-      dispatch({
+      const updatedTodo = await { ...todo, editing: true };
+      await dispatch({
         type: actionType.UPDATE_TODO,
         updatedTodo: updatedTodo,
       });
+      // await dispatch(updateFilteredTodos());
     } catch (error) {
       console.log(error);
     }
   };
 };
+
+// export const updateFilteredTodos = (activeFilter, filteredTodos) => ({
+//   type: actionType.UPDATE_FILTERED_TODOS,
+//   activeFilter: activeFilter,
+//   filteredTodos: filteredTodos,
+// });
 
 export const fetchTodosStart = () => ({
   type: actionType.FETCH_TODOS_START,

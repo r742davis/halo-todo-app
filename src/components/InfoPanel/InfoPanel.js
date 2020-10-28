@@ -8,6 +8,7 @@ const infoPanel = (props) => (
     <ItemsLeft todos={props.todos} />
     <TodoFilters
       filters={props.filters}
+      activeFilter={props.activeFilter}
       onSelectFilterOption={props.onSelectFilterOption}
     />
     <ClearCompleted clicked={props.onClearCompletedTodos} />

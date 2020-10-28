@@ -3,7 +3,16 @@ import Filter from "./Filter/Filter";
 
 const todoFilters = (props) => {
   const filterOptions = props.filters.map((filter) => (
-    <Filter key={filter} clicked={() => props.onSelectFilterOption(filter)}>
+    <Filter
+      key={filter}
+      classProp={
+        filter === props.activeFilter
+          ? "task-filters__filter--active"
+          : "task-filters__filter"
+      }
+      type="text"
+      clicked={() => props.onSelectFilterOption(filter)}
+    >
       {filter}
     </Filter>
   ));

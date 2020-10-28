@@ -2,21 +2,30 @@
   display: flex;
 }
 
-.task-filters__filter {
-  font-size: 10px;
+.task-filters__filter,
+.task-filters__filter--active {
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  font-size: 15px;
   color: black;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
   background: none;
   cursor: pointer;
   outline: none;
+  transition: 0.25s;
   &:hover {
-    color: $green;
+    border: 1px solid $medium-sea-green;
+    // border-radius: 10px;
+    color:$medium-sea-green;
+    transition: 0.25s;
   }
 }
 
 .task-filters__filter--active {
-  border: 1px solid black;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border: 1px solid $dark-slate-grey;
+  // border-radius: 10px;
+  transition: 0.25s;
 }
 

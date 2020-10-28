@@ -18,8 +18,9 @@ class Todos extends React.Component {
     itemsLeft: 0,
     filters: ["All", "Active", "Completed"],
     filteredTodos: null,
-    checkboxBoolean: true,
-    checkbox: ''
+    activeFilter: "All",
+    checkboxBoolean: false,
+    checkbox: "",
   };
 
   inputChangedHandler = (e) => {
@@ -34,19 +35,25 @@ class Todos extends React.Component {
       content: this.state.todoInput,
       isDone: false,
     };
-    this.props.addTodo(newTodo);
+    this.setState(
+      {
+        todoInput: "",
+      },
+      () => this.props.addTodo(newTodo)
+    );
   };
 
   editTodoHandler = (todo) => {
-    console.log(todo.content, todo.id);
     if (todo.editing === false) {
       this.setState(
         {
           editedContent: todo.content,
           editingTodoList: true,
+          activeFilter: "All",
         },
         () => this.props.setTodoEditState(todo)
       );
+      this.updateFilteredTodosHandler();
     }
   };
 
@@ -57,30 +64,49 @@ class Todos extends React.Component {
     this.setState(
       {
         editingTodoList: false,
+        activeFilter: "All"
       },
       () => this.props.updateTodo(updatedTodo)
     );
   };
 
-  updateTodoHandler = (todo) => {
+  updateTodoHandler = async (todo) => {
     let updatedTodo = null;
     if (todo.isDone) {
       updatedTodo = { ...todo, isDone: false };
     } else {
       updatedTodo = { ...todo, isDone: true };
     }
-    this.props.updateTodo(updatedTodo);
+    await this.props.updateTodo(updatedTodo);
+    this.updateFilteredTodosHandler();
   };
 
   clearCompletedTodos = () => {
     const filteredTodos = this.props.todos.filter(
       (todo) => todo.isDone === true
     );
-    filteredTodos.forEach(todo => this.props.deleteTodo(todo.id))
+    filteredTodos.forEach((todo) => this.props.deleteTodo(todo.id));
   };
 
   deleteTodoHandler = (id) => {
     this.props.deleteTodo(id);
+  };
+
+  updateFilteredTodosHandler = () => {
+    let filteredTodos = null;
+    if (this.state.activeFilter === "Active") {
+      filteredTodos = this.props.todos.filter((todo) => todo.isDone === false);
+      this.setState({
+        filteredTodos: filteredTodos,
+      });
+    }
+
+    if (this.state.activeFilter === "Completed") {
+      filteredTodos = this.props.todos.filter((todo) => todo.isDone === true);
+      this.setState({
+        filteredTodos: filteredTodos,
+      });
+    }
   };
 
   selectFilterOptionHandler = (filter) => {
@@ -89,21 +115,23 @@ class Todos extends React.Component {
       case "All":
         this.setState({
           filteredTodos: null,
+          activeFilter: filter,
         });
         break;
-
       case "Active":
         filteredTodos = this.props.todos.filter(
           (todo) => todo.isDone === false
         );
         this.setState({
           filteredTodos: filteredTodos,
+          activeFilter: filter,
         });
         break;
       case "Completed":
         filteredTodos = this.props.todos.filter((todo) => todo.isDone === true);
         this.setState({
           filteredTodos: filteredTodos,
+          activeFilter: filter,
         });
         break;
       default:
@@ -114,17 +142,14 @@ class Todos extends React.Component {
   toggleAllCheckboxesHandler = () => {
     const todos = [...this.props.todos];
     const checkboxBoolean = this.state.checkboxBoolean;
-
     const updatedTodos = todos.map((todo) =>
       todo.isDone === (checkboxBoolean === true ? true : false)
         ? { ...todo, isDone: checkboxBoolean === true ? false : true }
         : todo
     );
-
     this.setState({
       checkboxBoolean: !this.state.checkboxBoolean,
     });
-
     this.props.updateTodoList(updatedTodos);
   };
 
@@ -140,6 +165,7 @@ class Todos extends React.Component {
         editedContent={this.state.editedContent}
         editingTodoList={this.state.editingTodoList}
         filters={this.state.filters}
+        activeFilter={this.state.activeFilter}
         filteredTodos={this.state.filteredTodos}
         onAddTodo={(e) => this.addTodoHandler(e, this.state.todoInput)}
         onClearCompletedTodos={this.clearCompletedTodos}
@@ -150,6 +176,7 @@ class Todos extends React.Component {
         onToggleAllCheckboxes={this.toggleAllCheckboxesHandler}
         onSelectFilterOption={this.selectFilterOptionHandler}
         onSubmitEdit={this.submitEditHandler}
+        onUpdateFilteredTodos={this.updateFilteredTodosHandler}
       />
     );
   }

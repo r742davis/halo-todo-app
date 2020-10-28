@@ -1,6 +1,12 @@
 .clear-completed {
-  font-size: 10px;
+  font-size: 15px;
+  margin: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    color: $firebrick;
+    transition: 0.5s;
+  }
 }
