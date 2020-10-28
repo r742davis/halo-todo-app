@@ -2,13 +2,13 @@ import React from "react";
 import DownChevron from "../UI/Icons/DownChevron/DownChevron";
 
 const todoInput = (props) => (
-  <form className="task-input" onSubmit={props.onAddTodo}>
+  <form className="todo-input" onSubmit={props.onAddTodo}>
     <DownChevron
-      classProp="task-input__icon"
+      classProp="todo-input__icon"
       clicked={props.onToggleAllCheckboxes}
     />
     <input
-      className="task-input__input"
+      className="todo-input__input"
       type={props.type}
       name={props.name}
       value={props.todoInput}

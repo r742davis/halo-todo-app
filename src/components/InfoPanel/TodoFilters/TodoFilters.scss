@@ -1,9 +1,9 @@
-.task-filters {
+.todo-filters {
   display: flex;
 }
 
-.task-filters__filter,
-.task-filters__filter--active {
+.todo-filters__filter,
+.todo-filters__filter--active {
   padding-left: 10px;
   padding-right: 10px;
   box-sizing: border-box;
@@ -23,7 +23,7 @@
   }
 }
 
-.task-filters__filter--active {
+.todo-filters__filter--active {
   border: 1px solid $dark-slate-grey;
   // border-radius: 10px;
   transition: 0.25s;

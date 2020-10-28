@@ -7,8 +7,8 @@ const todoFilters = (props) => {
       key={filter}
       classProp={
         filter === props.activeFilter
-          ? "task-filters__filter--active"
-          : "task-filters__filter"
+          ? "todo-filters__filter--active"
+          : "todo-filters__filter"
       }
       type="text"
       clicked={() => props.onSelectFilterOption(filter)}
@@ -17,7 +17,7 @@ const todoFilters = (props) => {
     </Filter>
   ));
 
-  return <section className="task-filters">{filterOptions}</section>;
+  return <section className="todo-filters">{filterOptions}</section>;
 };
 
 export default todoFilters;
